@@ -1,3 +1,8 @@
+-- Answers to the 14 assignment questions.
+-- Run 01_schema_and_seed.sql first to create and populate the NEU database.
+USE NEU;
+GO
+
 -- 1) Find all professors who belong to the "Computer Science" department.
 SELECT p.*
 FROM Professors AS p
@@ -71,8 +76,12 @@ SELECT *
 FROM Students
 WHERE YEAR(Birthdate) = 2000;
 
+GO
+
 -- 14) Create a view showing all courses with more than 3 credits.
-CREATE VIEW vw_CoursesMoreThan3Credits AS
+-- CREATE VIEW must be the first statement in its batch, hence the GO above.
+-- CREATE OR ALTER (SQL Server 2016 SP1+) lets the script be re-run safely.
+CREATE OR ALTER VIEW vw_CoursesMoreThan3Credits AS
 SELECT CourseID,
        CourseName,
        DepartmentID,
